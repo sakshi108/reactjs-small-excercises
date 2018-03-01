@@ -1,0 +1,132 @@
+// Create a Simple JSX Element
+const JSX = <h1>Hello!</h1>;
+
+// Create a Complex JSX Element
+const JSX = <div>
+        <h1>Test</h1>
+        <p>Paragraph One</p>
+        <ul>
+          <li>list</li>
+          <li>list</li>
+          <li>list</li>
+        </ul>
+      </div>;
+
+//Add Comments in JSX
+const JSX = (
+<div>
+	<h1>This is a block of JSX</h1>
+	<p>Here's a subtitle</p>
+</div>);
+{/*Comment*/}
+
+//Render HTML Elements to the DOM
+const JSX = (
+<div>
+	<h1>Hello World</h1>
+	<p>Lets render this to the DOM</p>
+</div>
+);
+ReactDOM.render(JSX, document.getElementById('challenge-node'));
+
+//Define an HTML Class in JSX
+const JSX = (
+<div className="myDiv">
+	<h1>Add a class to this div</h1>
+</div>);
+
+
+//Learn About Self-Closing JSX Tags
+const JSX = (
+<div>
+	<h2>Welcome to React!</h2> <br />
+	<p>Be sure to close all tags!</p>
+	<hr />
+</div>
+);
+
+ReactDOM.render(JSX, document.getElementById('challenge-node'));
+
+//Create a Stateless Functional Component
+const MyComponent = function() {
+  return (
+    <div className='customClass'>
+      Text
+      </div>
+  )
+}
+
+//Create a Component with React
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+  render() {
+    return (
+      <div>
+        <h1>Hello React!</h1>
+        </div>
+    );
+  }
+};
+
+//Create a Component with Composition
+const ChildComponent = () => {
+	return (
+		<div>
+			<p>I am the child</p>
+		</div>
+	);
+};
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+	    <div>
+	      <h1>I am the parent</h1>
+        <ChildComponent />
+	    </div>
+    );
+  }
+};
+
+// Use React to Render Nested Components
+const TypesOfFruit = () => {
+	return (
+		<div>
+			<h2>Fruits:</h2>
+			<ul>
+				<li>Apples</li>
+				<li>Blueberries</li>
+				<li>Strawberries</li>
+				<li>Bananas</li>
+			</ul>
+		</div>
+	);
+};
+
+const Fruits = () => {
+	return (
+		<div>
+      <TypesOfFruit />
+		</div>
+	);
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+  	super(props);
+  }
+
+  render() {
+    return (
+	    <div>
+	    	<h1>Types of Food:</h1>
+        <Fruits />
+	    </div>
+    );
+  }
+};
