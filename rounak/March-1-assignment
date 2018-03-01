@@ -1,0 +1,127 @@
+// create a sample JSX
+// Any JSX element can be written with a self-closing tag, and every element must be closed. otherwise it wont render on the page and babel wont transpile it
+const JSX = <h1>Hello Rounak!</h1>;
+
+
+const complexJSX = 
+<div>
+	<h1>Hello Rounak!</h1>
+  { /* this is a JSX comment */ } // add a comment
+	<p>Some info</p>
+	<ul>
+		<li>An item</li>
+		<li>Another item</li>
+		<li>A third item</li>
+	</ul>
+</div>;
+
+// render above decleared JSX syntax (complexJSX) inside the node (ID: renderJsx)
+
+ReactDOM.render(complexJSX, document.getElementById('renderJsx'));
+
+//define JSX with ClassName
+// naming convention for all HTML attributes and event references in JSX become camelCase. For example, a click event in JSX is onClick, instead of onclick. Likewise, onchange becomes onChange. While this is a subtle difference, it is an important one to keep in mind moving forward.
+const JSX = (
+<div className = 'mySection'>
+	<h1>Added Class to div section</h1>
+</div>);
+
+//stateless component
+//that React requires your function name to begin with a capital letter. Here's an example of a stateless functional component that assigns an HTML class in JSX:
+
+const MyComponent = function() {
+	// change code below this line
+	return (
+		<div className="myClass">
+			stateless component
+		</div>
+	);
+	// change code above this line
+}
+
+
+//react component with ES6 
+
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+  render() {
+    return (
+	    <div>
+	    	<h1>Hello Rounak!</h1>
+	    </div>
+    );
+  }
+};
+
+
+//Nested Component in react
+
+
+const ChildComponent = () => {
+	return (
+		<div>
+			<p>I am the child</p>
+		</div>
+	);
+};
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+	    <div>
+	    	<h1>I am the parent</h1>
+	    	{ /* redering child component belo*/ }
+	    	<ChildComponent />
+	    	{ /* end */ } . // this is the comments
+	    </div>
+    );
+  }
+};
+
+//Nested Component
+
+const TypesOfFruit = () => {
+	return (
+		<div>
+			<h2>Fruits:</h2>
+			<ul>
+				<li>Apples</li>
+				<li>Blueberries</li>
+				<li>Strawberries</li>
+				<li>Bananas</li>
+			</ul>
+		</div>
+	);
+};
+
+const Fruits = () => {
+	return (
+		<div>
+			{ /* change code below this line */ }
+				<TypesOfFruit />
+			{ /* change code above this line */ }
+		</div>
+	);
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+  	super(props);
+  }
+
+  render() {
+    return (
+	    <div>
+	    	<h1>Types of Food:</h1>
+		    { /* change code below this line */ }
+				<Fruits />
+		    { /* change code above this line */ }
+	    </div>
+    );
+  }
+};
