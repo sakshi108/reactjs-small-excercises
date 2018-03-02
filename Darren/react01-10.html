@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+    This example covers challenges:
+    React 01: Create a Simple JSX Element
+    React 02: Create a Complex JSX Element
+    React 03: Add Comments in JSX
+    React 04: Render HTML Elements to the DOM
+    React 05: Define an HTML Class in JSX
+    React 06: Learn About Self-Closing JSX Tags
+    React 07: Create a Stateless Functional Component
+    React 08: Create a Component with React
+    React 09: Create a Component with Composition
+    React 10: Use React to Render Nested Components
+    -->
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Challenge 01</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div id="simple-container">
+      </div>
+      <div id="complex-container">
+      </div>
+      <div id="cars">
+      </div>
+    </div>
+
+    <script type="text/babel">
+      /* React 01 */
+      const simpleJSXElement = (
+        <h1>{ /* React 03: comment in the JSX! */ } 
+          This is a simple JSX Element! Note: this is not the same thing as a Component!
+        </h1>
+      );
+
+      /* React 02, React 05, React 06 */
+      const complexJSXElement = (
+        <div className="complex-element">
+          <div className="empty-div" />
+          <h1>This is a complex JSX Element!</h1>
+          <p>The current date is: {new Date().toLocaleTimeString()}</p>
+          <ul>
+            <li>This example covers challenges:</li>
+            <li>React 01: Create a Simple JSX Element</li>
+            <li>React 02: Create a Complex JSX Element</li>
+            <li>React 03: Add Comments in JSX</li>
+            <li>React 04: Render HTML Elements to the DOM</li>
+            <li>React 05: Define an HTML Class in JSX</li>
+            <li>React 06: Learn About Self-Closing JSX Tags</li>
+            <li>React 07: Create a Stateless Functional Component</li>
+            <li>React 08: Create a Component with React</li>
+            <li>React 09: Create a Component with Composition</li>
+            <li>React 10: Use React to Render Nested Components</li>
+          </ul>
+        </div>
+      );
+
+      /* React 07 */
+      const StatelessFunctionalComponent = function() {
+        return (<h1>Functional Component</h1>);
+      };
+
+      /* React 08 */
+      class MyComponent extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>ES6 Syntax!</div>
+          );
+        }
+      };
+
+      /* React 09 */
+      class CompositeComponent extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h2>Parent</h2>
+              <MyComponent />
+            </div>
+          );
+        }
+      };
+
+      /* React 10 */
+      class TypesOfSUVs extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h2>SUVs:</h2>
+              <ul>
+                <li>Dodge Journey</li>
+                <li>Ford Escape</li>
+                <li>Jeep Cherokee</li>
+                <li>Toyota Rav4</li>
+              </ul>
+            </div>
+          );
+        }
+      };
+
+      class TypesOfSedans extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h2>Sedans:</h2>
+              <ul>
+                <li>Dodge Charger</li>
+                <li>Ford Focus</li>
+                <li>Honda Civic</li>
+                <li>Toyota Camry</li>
+              </ul>
+            </div>
+          );
+        }
+      };
+
+      class Cars extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <TypesOfSUVs />
+              <TypesOfSedans />
+            </div>
+          );
+        }
+      };
+
+      class TypesOfCars extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Types of Cars:</h1>
+              <Cars />
+            </div>
+            );
+        }
+      };
+
+      /* React 04 */
+      ReactDOM.render(
+        simpleJSXElement,
+        document.getElementById('simple-container')
+      );
+
+      ReactDOM.render(
+        complexJSXElement,
+        document.getElementById('complex-container')
+      );
+
+      ReactDOM.render(
+        <TypesOfCars />,
+        document.getElementById('cars')
+      );
+
+    </script>
+
+  </body>
+</html>
