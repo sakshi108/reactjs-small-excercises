@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Challenge 11-20</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div id="cars">
+      </div>
+    </div>
+
+    <script type="text/babel">
+
+      /* React 14:*/
+      const Charger = (props) => {
+        return (
+          <div>
+            Dodge Charger {props.trimLevel}
+          </div>
+          );
+      };
+
+      /* React 11, 13 */
+      class SUVs extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h2>SUVs:</h2>
+              <ul>
+                <li>Dodge Journey</li>
+                <li>Ford Escape</li>
+                <li>Jeep Cherokee</li>
+                <li>Toyota Rav4</li>
+              </ul>
+            </div>
+          );
+        }
+      };
+
+      class Sedans extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h2>Sedans:</h2>
+              <ul>
+                {/* React 14:*/}
+                <li><Charger trimLevel="SRT" /></li>
+                <li>Ford Focus</li>
+                <li>Honda Civic</li>
+                <li>Toyota Camry</li>
+              </ul>
+            </div>
+          );
+        }
+      };
+
+      const DomesticTrucks =  function() {
+        return (
+          <div>
+            <h3>Domestic Trucks:</h3>
+            <ul>
+                <li>Dodge Ram</li>
+                <li>Ford F150</li>
+                <li>GMC Sierra</li>
+                <li>Chevy Silverado</li>
+              </ul>
+          </div>
+          );
+      };
+
+      const ForeignTrucks =  function() {
+        return (
+          <div>
+            <h3>Foreign Trucks:</h3>
+            <ul>
+                <li>Nissan Titan</li>
+                <li>Honda RidgeLine</li>
+                <li>Toyota Tacoma</li>
+              </ul>
+          </div>
+          );
+      };
+
+      const Trucks = function() {
+        return (
+          <div>
+            <h2>Trucks:</h2>
+            <DomesticTrucks />
+            <ForeignTrucks />
+          </div>
+          );
+      };
+
+      /* React 15: */
+      const PaintColours = (props) => {
+        return (
+          <div>
+            <p>Available Paint Colours: {props.colours.join(', ')}</p>
+          </div>
+          );
+      };
+
+      /* React 19 and 20: */
+      class ModelSpecs extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+          <div>
+            <h2>{this.props.name} Model Specs</h2>
+            <ul>
+              <li>{this.props.engine}</li>
+              <li>{this.props.transmission}</li>
+              <li>{this.props.powertrain}</li>
+            </ul>
+          </div>
+          );
+        }
+      };
+
+      /* React 16: */
+      ModelSpecs.defaultProps = {
+        name: "Base",
+        engine: "2.4L I4",
+        transmission: "6-speed auto",
+        powertrain: "2WF"
+      };
+
+      /* React 18: */
+      ModelSpecs.propTypes = {
+        name: PropTypes.string.isRequired,
+        engine: PropTypes.string.isRequired,
+        transmission: PropTypes.string.isRequired,
+        powertrain: PropTypes.string.isRequired
+      };
+
+      const BaseModel = (props) => {
+        return (
+          <div>
+            <ModelSpecs />
+          </div>
+          );
+      };
+
+      /* React 17: */
+      const SRTModel = (props) => {
+        return (
+          <div>
+            <ModelSpecs name="SRT" engine="3.6L V6" transmission="9-speed auto" powertrain="4X4" />
+          </div>
+          );
+      };
+
+      class Cars extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              <h1>Types of Cars:</h1>
+              <SUVs />
+              <Sedans />
+              <Trucks />
+              <PaintColours colours={["Black Pearl", "Ice Gray", "Classic Blue", "Ruby Red"]} />
+              <hr />
+              <BaseModel />
+              <SRTModel />
+            </div>
+            );
+        }
+      };
+
+      /* React 12:*/
+      ReactDOM.render(
+        <Cars />,
+        document.getElementById('cars')
+      );
+
+    </script>
+
+  </body>
+</html>
