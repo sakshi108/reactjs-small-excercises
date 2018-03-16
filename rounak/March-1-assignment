@@ -125,3 +125,258 @@ class TypesOfFood extends React.Component {
     );
   }
 };
+
+
+//11 
+
+class Fruits extends React.Component {
+	constructor(props) {
+	  super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h2>Fruits:</h2>
+		    
+				<NonCitrus />
+        <Citrus />
+	 
+      </div>
+		);
+	}
+};
+
+class TypesOfFood extends React.Component {
+	constructor(props) {
+	 	super(props);
+	}
+  render() {
+  	return (
+    	<div>
+			  <h1>Types of Food:</h1>
+		    
+				<Fruits />
+	
+		    <Vegetables />
+    	</div>
+  	);
+	}
+};
+
+//12 
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+  	super(props);
+  }
+  render() {
+    return (
+	    <div>
+		    <h1>Types of Food:</h1>
+        
+				<Fruits />
+        <Vegetables />
+		    
+	    </div>
+    );
+  }
+};
+
+
+ReactDOM.render(<TypesOfFood />, document.getElementById('challenge-node'))
+
+
+//13 
+
+
+
+class MyComponent extends React.Component {
+
+  render(){
+    return(
+    	<div><h1>My First React Component!</h1></div>
+  	)
+  }
+}
+
+ReactDOM.render(<MyComponent/>, document.getElementById('challenge-node'))
+
+
+//14 
+
+
+const CurrentDate = (props) => {
+	return (
+		<div>
+			
+			<p>The current date is: {props.date} </p
+		</div>
+	);
+};
+
+class Calendar extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<h3>What date is it?</h3>
+				
+				<CurrentDate date={Date()} />
+			</div>
+		);
+	}
+};
+
+//15 
+
+const List= (props) => {
+	
+	return <p>{props.tasks.join(", ")}<
+};
+
+class ToDo extends React.Component {
+  constructor(props) {
+  	super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>To Do Lists</h1>
+				<h2>Today</h2>
+				
+        <List tasks={["grapes", 'mangoes', 'unkown']} />
+				<h2>Tomorrow</h2>
+        <List tasks={['mandarine', 'papaya', 'orange']}/>
+      </div>
+    );
+  }
+};
+
+//16 
+
+const ShoppingCart = (props) => {
+  return (
+		<div>
+			<h1>Shopping Cart Component</h1>
+		</div>
+  )
+};
+
+ShoppingCart.defaultProps = {items: 0}
+
+
+//17 
+
+const Items = (props) => {
+	return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+	quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+  render() {
+    
+    return <Items quantity={10} />
+  }
+};
+
+
+//18 
+
+const Items = (props) => {
+	return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+
+
+
+Items.defaultProps = {
+	quantity: 0
+};
+
+class ShoppingCart extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+  render() {
+    return <Items />
+  }
+};
+
+Items.propTypes = {quantity: PropTypes.number.isRequired}
+
+
+//19 
+
+
+class ReturnTempPassword extends React.Component {
+  constructor(props) {
+  	super(props);
+
+  }
+  render() {
+    return (
+        <div>
+        		
+            <p>Your temporary password is: <strong>{this.props.tempPassword}</strong></p>
+       
+        </div>
+    );
+  }
+};
+
+class ResetPassword extends React.Component {
+  constructor(props) {
+  	super(props);
+
+  }
+  render() {
+    return (
+        <div>
+        	<h2>Reset Password</h2>
+        	<h3>We've generated a new temporary password for you.</h3>
+        	<h3>Please reset this password from your account settings ASAP.</h3>
+        	
+					<ReturnTempPassword tempPassword={"this is the new password"} />
+    
+        </div>
+    );
+  }
+};
+
+
+
+
+//20 
+
+
+const Camper = (props) =>{
+
+    return(
+    	<p>{props.name}</p>
+    )
+
+}
+
+Camper.defaultProps = {name: "CamperBot"}
+Camper.propTypes = {name: PropTypes.string.isRequired}
+
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>
+      </div>
+    );
+  }
+};
