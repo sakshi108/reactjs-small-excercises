@@ -1,0 +1,129 @@
+/* Im just uploading everything into this one file but i've built an application so these are all seperate components*/
+
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Part1 from './Part1';
+import Stateless from './Stateless'
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <Stateless />
+        <Part1 list={['i','have','no','idea']}/>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+import React, { Component } from 'react';
+
+const Composition = props => {
+    return (
+      <div className="composition">
+        { props.children }
+      </div>
+    );
+}
+
+export default Composition;
+
+
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+class DefaultProps extends Component {
+  render() {
+    return (
+      <div className="default-props">
+        <p>{this.props.message}</p>
+      </div>
+    );
+  }
+}
+
+DefaultProps.defaultProps = {
+  message: "This is the default message because none was passed in"
+}
+
+DefaultProps.propTypes = {
+  message: PropTypes.string
+}
+
+export default DefaultProps;
+
+
+import React, { Component } from 'react';
+
+class Nested extends Component {
+  render() {
+    return (
+      <div className="nested">
+        <p>This is actually a nested component</p>
+      </div>
+    );
+  }
+}
+
+export default Nested;
+
+
+import React, { Component } from 'react';
+import Nested from './Nested';
+import Composition from './Composition';
+import DefaultProps from './DefaultProps';
+
+class Part1 extends Component {
+  render() {
+    // Here's a simple component
+    function Welcome(props) {
+      return <h1>{props.name}</h1>;
+    }
+
+    return (
+      <div className="part-one">
+        { /* This Component covers all the questions for March 15th*/}
+        <h2>March 15th</h2>
+        <Welcome name='super simple component' />
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eum nostrum, nihil architecto modi culpa voluptatum ullam ex. Quidem, harum, tenetur. Ea blanditiis dolores suscipit et quia eaque repudiandae nostrum?</p>
+        <p>I'm populating this list through props</p>
+        <ol>
+          { this.props.list.map( (item) =>{ return <li>{item}</li>})}
+        </ol>
+        <Nested />
+        <Composition>
+          <h3>I'm rendering this text inside a component using props.children</h3>
+        </Composition>
+        <Composition>
+          <p>This is also the same component but im passing in a different component this time</p>
+        </Composition>
+        <DefaultProps/>
+        <DefaultProps message={'im passing this message in from the parent component'}/>
+      </div>
+    );
+  }
+}
+
+export default Part1;
+
+
+import React, { Component } from 'react';
+
+const Stateless = props => {
+  return (
+    <div className="stateless">
+      <h2>This is a stateless component</h2>
+    </div>
+  );
+}
+
+export default Stateless;
