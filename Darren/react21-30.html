@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React Challenge 21-30</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <br />
+    <div id="counter"></div>
+
+    <script type="text/babel">
+      /* React 21 - 26*/
+      class ShoppingCart extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            items: 0,
+            customerName: "Joe"
+          };
+          this.signOut = this.signOut.bind(this);
+        }
+
+        signOut() {
+          this.setState({
+            customerName: "Guest"
+          });
+        }
+
+        addItem = () => {
+          this.setState({
+            items: this.state.items + 1
+          });
+        }
+
+        render() {
+          const name = this.state.customerName;
+
+          return (
+            <div>
+              <h1>Shopping Cart</h1>
+              <h2>Signed in as: {name}</h2>
+              <button onClick={this.signOut}>Sign Out</button>
+              <h2>Number of Items: {this.state.items}</h2>
+              <button onClick={this.addItem}>Add Item</button>
+              <ToggleButton />
+            </div>
+            );
+        }
+      }
+      
+      /* React 27*/
+      class ToggleButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            visibility: false
+          };
+        }
+        toggleVisibility = () => {
+          this.setState({
+            visibility: !this.state.visibility
+          });
+        }
+        render() {
+          if (this.state.visibility) {
+            return (
+              <div>
+              <button onClick = {this.toggleVisibility}>Click Me</button>
+              <h1>Now you see me!</h1>
+              </div>
+              );
+          } else {
+            return (
+              <div>
+              <button onClick = {this.toggleVisibility}>Click Me</button>
+              </div>
+              );
+          }
+        }
+      };
+
+      /* React 28*/
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            count: 0
+          };
+        }
+        reset = () => {
+          this.setState({
+            count: 0
+          });
+        }
+        increment = () => {
+          this.setState({
+            count: this.state.count + 1
+          });
+        }
+        decrement = () => {
+          this.setState({
+            count: this.state.count - 1
+          });
+        }
+        render() {
+          return (
+            <div>
+            <button className='inc' onClick={this.increment}>Increment!</button>
+            <button className='dec' onClick={this.decrement}>Decrement!</button>
+            <button className='reset' onClick={this.reset}>Reset</button>
+            <h1>Current Count: {this.state.count}</h1>
+            </div>
+            );
+        }
+      };
+
+      ReactDOM.render(
+        <ShoppingCart />,
+        document.getElementById('root')
+      );
+      ReactDOM.render(
+        <Counter />,
+        document.getElementById('counter')
+      );
+
+    </script>
+
+  </body>
+</html>
