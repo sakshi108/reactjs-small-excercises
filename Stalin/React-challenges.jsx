@@ -672,8 +672,705 @@ class MyForm extends React.Component {
 
 //31 ################################
 
+class MyApp extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: 'CamperBot'
+		}
+	}
+  render() {
+    return (
+	   	<div>
+	   		<Navbar name={this.state.name} />
+	   	</div>
+    );
+  }
+};
+
+class Navbar extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+    const { name } = this.props
+		return (
+		<div>
+			<h1>Hello, my name is: {name}  </h1>
+		</div>
+		);
+	}
+};
+
 //32 ################################
 
+class MyApp extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			inputValue: ''
+		}
+	}
+	handleChange = (event) => {
+		this.setState({
+			inputValue: event.target.value
+		});
+	}
+  render() {
+    return (
+	   	<div>
+				{ /* change code below this line */ }
+				<GetInput inputValue={this.state.inputValue} handleInput={this.handleChange} />
+        <RenderInput input={this.state.inputValue} />
+				{ /* change code above this line */ }
+	   	</div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<h3>Get Input:</h3>
+				<input
+					value={this.props.input}
+					onChange={this.props.handleInput}/>
+			</div>
+		);
+	}
+};
+
+class RenderInput extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<div>
+				<h3>Input Render:</h3>
+				<p>{this.props.input}</p>
+			</div>
+		);
+	}
+};
+
 //33 ################################
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	componentWillMount() {
+		// change code below this line
+		console.log("que lo que")
+		// change code above this line
+	}
+  render() {
+    return <div />
+  }
+};
 
 //34 ################################
+
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			activeUsers: null
+		};
+	}
+	componentDidMount() {
+		setTimeout( () => {
+			this.setState({
+				activeUsers: 1273
+			});
+		}, 2500);
+	}
+  render() {
+    return (
+			<div>
+				<h1>Active Users: { this.state.activeUsers }</h1>
+			</div>
+    );
+  }
+};
+
+//35 ################################
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			message: ''
+		};
+	}
+	// change code below this line
+	componentDidMount() {
+		document.addEventListener('keydown', () =>{
+      this.handleKeyPress()
+    })
+	}
+	componentWillUnmount() {
+		document.removeEventListener('keydown', () => {
+      this.handleKeyPress()
+    })
+	}
+	// change code above this line
+	handleEnter = () => {
+		this.setState({
+			message: this.state.message + 'You pressed the enter key! '
+		});
+	}
+	handleKeyPress = (event) => {
+    if (event.keyCode === 13) {
+    	this.handleEnter();
+    }
+  }
+  render() {
+    return (
+			<div>
+				<h1>{this.state.message}</h1>
+			</div>
+    );
+  }
+};
+
+//36 ################################
+
+class Dialog extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	componentWillUpdate() {
+		console.log('Component is about to update...');
+	}
+	// change code below this line
+	componentWillReceiveProps(nextProps) {
+  	 console.log(this.props, nextProps)
+  }
+  
+  componentDidUpdate(){
+    console.log("component has updated")
+  }
+	// change code above this line
+  render() {
+    return <h1>{this.props.message}</h1>
+  }
+};
+
+class Controller extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			message: 'First Message'
+		};
+	}
+	changeMessage = () => {
+		this.setState({
+			message: 'Second Message'
+		});
+	}
+  render() {
+    return (
+			<div>
+				<button onClick={this.changeMessage}>Update</button>
+				<Dialog message={this.state.message}/>
+			</div>
+    );
+  }
+};
+
+//37 ################################
+
+class OnlyEvens extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	shouldComponentUpdate(nextProps, nextState) {
+    console.log('Should I update?');
+    // change code below this line
+    return nextProps.value % 2 === 0;
+    // change code above this line
+	}
+	componentWillReceiveProps(nextProps) {
+		console.log('Receiving new props...');
+	}
+	componentDidUpdate() {
+		console.log('Component re-rendered.');
+	}
+  render() {
+    return <h1>{this.props.value}</h1>
+  }
+};
+
+class Controller extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 0
+		};
+	}
+	addValue = () => {
+		this.setState({
+			value: this.state.value + 1
+		});
+	}
+  render() {
+    return (
+			<div>
+				<button onClick={this.addValue}>Add</button>
+				<OnlyEvens value={this.state.value}/>
+			</div>
+    );
+  }
+};
+
+//38 ################################
+class Colorful extends React.Component {
+  render() {
+    return (
+	    <div style={{ color: 'red', fontSize: 72 }}>Big Red</div>
+    );
+  }
+};
+
+//39 ################################
+
+const styles = {color: 'purple', fontSize: 40, border: '2px solid purple'}
+// change code above this line
+class Colorful extends React.Component {
+  render() {
+  	// change code below this line
+    return (
+	    <div style={styles}>Style Me!</div>
+    );
+    // change code above this line
+  }
+};
+
+
+//40 ################################
+
+const inputStyle = {
+	width: 235,
+	margin: 5
+}
+
+class MagicEightBall extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userInput: '',
+			randomIndex: ''
+		}
+		this.ask = this.ask.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+	ask() {
+		if (this.state.userInput) {
+			this.setState({
+				randomIndex: Math.floor(Math.random() * 20),
+				userInput: ''
+			});
+		}
+	}
+	handleChange(event) {
+		this.setState({
+			userInput: event.target.value
+		});
+	}
+	render() {
+		const possibleAnswers = [
+			"It is certain", "It is decidedly so", "Without a doubt",
+			"Yes, definitely", "You may rely on it", "As I see it, yes",
+			"Outlook good", "Yes", "Signs point to yes", "Reply hazy try again",
+			"Ask again later", "Better not tell you now", "Cannot predict now",
+			"Concentrate and ask again", "Don't count on it", "My reply is no",
+			"My sources say no", "Outlook not so good","Very doubtful", "Most likely"
+		];
+		const answer =  possibleAnswers[this.state.randomIndex]
+		return (
+			<div>
+				<input
+					type="text"
+					value={this.state.userInput}
+					onChange={this.handleChange}
+					style={inputStyle} /><br />
+				<button onClick={this.ask}>Ask the Magic Eight Ball!</button><br />
+				<h3>Answer:</h3>
+				<p>
+					{ /* change code below this line */ }
+					{answer}
+					{ /* change code above this line */ }
+				</p>
+			</div>
+		);
+	}
+};
+
+//41 ################################
+
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			display: true
+		}
+	}
+	toggleDisplay = () => {
+		this.setState({
+			display: !this.state.display
+		});
+	}
+  render() {
+  	// change code below this line
+  	if (this.state.display) {
+	    return (
+		   	<div>
+		   		<button onClick={this.toggleDisplay}>Toggle Display</button>
+		   		<h1>Displayed!</h1>
+		   	</div>
+	    );
+	  } else {
+	  	return (
+	  		<div>
+		   		<button onClick={this.toggleDisplay}>Toggle Display</button>
+		   	</div>
+	  	);
+	  }
+  }
+};
+
+//42 ################################
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			display: true
+		}
+	}
+	toggleDisplay = () => {
+		this.setState({
+			display: !this.state.display
+		});
+	}
+  render() {
+  	// change code below this line
+    return (
+	   	<div>
+	   		<button onClick={this.toggleDisplay}>Toggle Display</button>
+	   		{this.state.display && <h1>Displayed!</h1>}
+	   	</div>
+    );
+  }
+};
+
+//43 ################################
+class Parent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			display: true
+		}
+	}
+	toggleDisplay = () => {
+		this.setState({
+			display: !this.state.display
+		});
+	}
+  render() {
+    return (
+	   	<div>
+	   		<button onClick={this.toggleDisplay}>Toggle Display</button>
+	   		<Child display={this.state.display}/>
+	   	</div>
+    );
+  }
+};
+
+class Child extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		// change code below this line
+		if (this.props.display) {
+			return <h1>Display!</h1>
+		} else {
+			return null;
+		}
+	}
+}
+
+//44 ################################
+
+
+const inputStyle = {
+	width: 235,
+	margin: 5
+}
+
+class CheckUserAge extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userAge: '',
+			input: ''
+		}
+		this.submit = this.submit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+	handleChange(e) {
+		this.setState({
+			input: e.target.value,
+			userAge: ''
+		});
+	}
+	submit() {
+		this.setState({
+			userAge: this.state.input
+		});
+	}
+	render() {
+		const buttonOne = <button onClick={this.submit}>Submit</button>;
+		const buttonTwo = <button>You May Enter</button>;
+		const buttonThree = <button>You Shall Not Pass</button>;
+		return (
+			<div>
+				<h3>Enter Your Age to Continue</h3>
+				<input
+					style={inputStyle}
+					type="number"
+					value={this.state.input}
+					onChange={this.handleChange} /><br />
+					{
+						this.state.userAge === '' ?
+						buttonOne :
+						this.state.userAge >= 18 ?
+						buttonTwo :
+						buttonThree
+					}
+			</div>
+		);
+	}
+};
+
+//45 ################################
+class Results extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render() {
+		return (
+			<h1>
+			{
+				this.props.fiftyFifty ? "You win!" : "You lose!"
+			}
+			</h1>
+		)
+	};
+};
+
+class GameOfChance extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			counter: 1
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+	handleClick() {
+		this.setState({
+			counter: this.state.counter+=1
+		});
+	}
+	render() {
+		let expression = (Math.random() > .5)
+		return (
+			<div>
+				<button onClick={this.handleClick}>Play Again</button>
+				{ /* change code below this line */ }
+				<Results fiftyFifty={expression} />
+				{ /* change code above this line */ }
+				<p>{'Turn: ' + this.state.counter}</p>
+			</div>
+		);
+	}
+};
+
+//46 ################################
+
+class GateKeeper extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			input: ''
+		};
+		this.handleInput = this.handleInput.bind(this);
+	}
+	handleInput(event) {
+		this.setState({ input: event.target.value })
+	}
+	render() {
+		let inputStyle = {
+			border: '1px solid black'
+		};
+		if (this.state.input.length > 15) {
+			inputStyle.border = '3px solid red';
+		};
+		return (
+			<div>
+				<h3>Don't Type Too Much:</h3>
+				<input
+					type="text"
+					style={inputStyle}
+					value={this.state.input}
+					onChange={this.handleInput} />
+			</div>
+		);
+	}
+};
+
+//47 ################################
+
+const textAreaStyles = {
+	width: 235,
+	margin: 5
+};
+
+class MyToDoList extends React.Component {
+	constructor(props) {
+		super(props);
+		// change code below this line
+		this.state = {
+      userInput: '',
+      toDoList: []
+    }
+		// change code above this line
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+	handleSubmit() {
+		const itemsArray = this.state.userInput.split(',');
+		this.setState({
+			toDoList: itemsArray
+		});
+	}
+	handleChange(e) {
+		this.setState({
+			userInput: e.target.value
+		});
+	}
+	render() {
+		const items = this.state.toDoList.map(item => {
+      return <li>{item}</li>
+    })
+		return (
+			<div>
+				<textarea
+					onChange={this.handleChange}
+					value={this.state.userInput}
+					style={textAreaStyles}
+					placeholder="Separate Items With Commas" /><br />
+				<button onClick={this.handleSubmit}>Create List</button>
+				<h1>My "To Do" List:</h1>
+				<ul>
+					{items}
+				</ul>
+			</div>
+		);
+	}
+};
+
+//48 ################################
+
+const frontEndFrameworks = [
+	'React',
+	'Angular',
+	'Ember',
+	'Knockout',
+	'Backbone',
+	'Vue'
+];
+
+function Frameworks() {
+	const renderFrameworks = frontEndFrameworks.map((fw, i) => {
+		return <li key={i}>{fw}</li>
+	})
+	return (
+		<div>
+			<h1>Popular Front End JavaScript Frameworks</h1>
+			<ul>
+				{renderFrameworks}
+			</ul>
+		</div>
+	);
+};
+
+//49 ################################
+class MyComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			users: [
+				{
+					username: 'Jeff',
+					online: true
+				},
+				{
+					username: 'Alan',
+					online: false
+				},
+				{
+					username: 'Mary',
+					online: true
+				},
+				{
+					username: 'Jim',
+					online: false
+				},
+				{
+					username: 'Sara',
+					online: true
+				},
+				{
+					username: 'Laura',
+					online: true
+				}
+			]
+		}
+	}
+  render() {
+  	const usersOnline = this.state.users.filter(user => {
+  		return user.online;
+  	});
+  	const renderOnlineUsers = usersOnline.map(user => {
+  		return (
+  			<li key={user.username}>{user.username}</li>
+  		);
+  	});
+    return (
+	   	<div>
+	   		<h1>Current Online Users:</h1>
+	   		<ul>
+					{renderOnlineUsers}
+				</ul>
+	   	</div>
+    );
+  }
+};
+
+//50 ################################
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+  render() {
+    return <div/>
+  }
+};
+
+// change code below this line
+ReactDOMServer.renderToString(<App/>);
